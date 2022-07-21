@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity()
-export class User {
+export class User extends BaseEntity{
   @PrimaryGeneratedColumn( {
     type:'bigint',
   })
@@ -9,36 +9,39 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 255
+    length: 255,
+    nullable: false, default: false
   })
-  name: string;
+  Name: string;
 
   @Column({
     type: 'varchar',
-    length: 255
+    length: 255,
+    nullable: false, default: false
   })
-  email: string;
+  Email: string;
 
-  @Column({type: 'timestamp', nullable: true})
+  @Column({type: 'timestamp', nullable: true, default: null })
   email_verified_at: Date;
 
   @Column({
     type: 'varchar',
-    length: 255
+    length: 255,
+    nullable: false, default: false
   })
-  password: string;
+  Password: string;
 
   @Column({
     type: 'varchar',
     length: 100,
-    nullable: true
+    nullable: true, default: null
   })
-  remember_token: string;
+  Remember_token: string;
 
-  @Column({type: 'timestamp', nullable: true})
-  created_at: Date;
+  @Column({type: 'timestamp', nullable: true, default: null})
+  Created_at: Date;
 
-  @Column({type: 'timestamp', nullable: true})
-  updated_at: Date;
+  @Column({type: 'timestamp', nullable: true, default: null})
+  Updated_at: Date;
 
 }

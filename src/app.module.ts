@@ -17,6 +17,7 @@ import { UsersService } from './api/users/users.service';
       database: 'inventario',
       entities: [User],
       synchronize: true,
+      autoLoadEntities: true,
       dropSchema: true,
     }),
     UsersModule,

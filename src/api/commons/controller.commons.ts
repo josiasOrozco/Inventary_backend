@@ -1,12 +1,21 @@
-import { Body, Delete, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
-import { BaseService } from "./service.commons";
+import {
+  Body,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import { BaseService } from './service.commons';
 
 export abstract class BaseController<T> {
-
   abstract getService(): BaseService<T>;
 
   @Get('all')
-  async findAll() : Promise<T[]> {
+  async findAll(): Promise<T[]> {
     return await this.getService().findAll();
   }
 
@@ -17,13 +26,13 @@ export abstract class BaseController<T> {
 
   @Post('save')
   @HttpCode(HttpStatus.CREATED)
-  async save(@Body() entity: T) : Promise<T> {
+  async save(@Body() entity: T): Promise<T> {
     return await this.getService().save(entity);
   }
 
   @Post('save/many')
   @HttpCode(HttpStatus.CREATED)
-  async saveMany(@Body() entities: T[]) : Promise<T[]> {
+  async saveMany(@Body() entities: T[]): Promise<T[]> {
     return await this.getService().saveMany(entities);
   }
 
@@ -34,7 +43,7 @@ export abstract class BaseController<T> {
   }
 
   @Get('count')
-  async count() : Promise<number> {
+  async count(): Promise<number> {
     return await this.getService().count();
   }
 }

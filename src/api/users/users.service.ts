@@ -1,19 +1,20 @@
-import {BaseService}  from "src/api/commons/service.commons";
-import { Injectable } from '@nestjs/common';
+import { BaseService } from 'src/api/commons/service.commons';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class UsersService extends BaseService<User>{
-
+export class UsersService extends BaseService<User> {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,) {
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {
     super();
   }
 
-  getRepository(): Repository<User>{
-    return this.userRepository
+  getRepository(): Repository<User> {
+    return this.userRepository;
   }
 
   findAll(): Promise<User[]> {

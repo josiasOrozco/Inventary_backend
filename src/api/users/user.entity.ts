@@ -1,47 +1,67 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
+} from 'typeorm';
+import { hash } from 'bcryptjs';
 
 @Entity()
-export class User extends BaseEntity{
-  @PrimaryGeneratedColumn( {
-    type:'bigint',
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn({
+    type: 'bigint',
   })
   id: number;
 
   @Column({
     type: 'varchar',
     length: 255,
-    nullable: false, default: false
+    nullable: false,
+    default: false,
   })
-  Name: string;
+  name: string;
 
   @Column({
     type: 'varchar',
     length: 255,
-    nullable: false, default: false
+    nullable: false,
+    default: false,
   })
-  Email: string;
+  email: string;
 
-  @Column({type: 'timestamp', nullable: true, default: null })
+  @Column({ type: 'timestamp', nullable: true, default: null })
   email_verified_at: Date;
 
   @Column({
     type: 'varchar',
     length: 255,
-    nullable: false, default: false
+    nullable: false,
+    default: false,
   })
-  Password: string;
+  password: string;
 
   @Column({
     type: 'varchar',
     length: 100,
-    nullable: true, default: null
+    nullable: true,
+    default: null,
   })
-  Remember_token: string;
+  remember_token: string;
 
-  @Column({type: 'timestamp', nullable: true, default: null})
-  Created_at: Date;
+  @Column({ type: 'timestamp', nullable: true, default: null })
+  created_at: Date;
 
-  @Column({type: 'timestamp', nullable: true, default: null})
-  Updated_at: Date;
+  @Column({ type: 'timestamp', nullable: true, default: null })
+  updated_at: Date;
 
+  //@BeforeInsert()
+  //@BeforeUpdate()
+  //async hashPassword() {
+  //if (!this.password) {
+  //    return;
+  // }
+  //  this.password = await hash(this.password, 10);
+  //}
 }
